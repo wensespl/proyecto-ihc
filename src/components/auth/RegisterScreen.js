@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import validator from 'validator'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 
 import { useForm } from '../../hooks/useForm'
 // import { startRegister } from '../../actions/auth'
@@ -16,7 +16,7 @@ moment.locale('es')
 // registerLocale('es', es)
 
 export const RegisterScreen = () => {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const [nameValid, setNameValid] = useState(true)
   const [correoValid, setCorreoValid] = useState(true)
   const [passwordValid, setPasswordValid] = useState(true)

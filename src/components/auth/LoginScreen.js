@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import validator from 'validator'
 
@@ -9,7 +9,7 @@ import { useForm } from '../../hooks/useForm'
 import './form.css'
 
 export const LoginScreen = () => {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const [correoValid, setCorreoValid] = useState(true)
   const [passwordValid, setPasswordValid] = useState(true)
   const [formValues, handleInputChange] = useForm({ correo: '', password: '' })
