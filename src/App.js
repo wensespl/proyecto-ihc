@@ -1,5 +1,13 @@
-function App() {
-  return <div className="App"></div>
-}
+import React from 'react'
+import { Provider } from 'react-redux'
 
-export default App
+import { AppRouter } from './routers/AppRouter'
+import { store } from './redux/store/store'
+
+export const App = () => {
+  return (
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
+  )
+}
