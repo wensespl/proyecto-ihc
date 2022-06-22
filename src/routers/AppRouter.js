@@ -2,7 +2,7 @@
 // import { useDispatch, useSelector } from 'react-redux'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 // import { startChecking } from '../actions/auth'
-// import { Appbar } from '../components/appbar/Appbar'
+import { Appbar } from '../components/appbar/Appbar'
 import { HomeScreen } from '../components/HomeScreen'
 import { AuthRoutes } from './AuthRoutes'
 import { DashboardRoutes } from './DashboardRoutes'
@@ -23,7 +23,7 @@ export const AppRouter = () => {
 
   return (
     <BrowserRouter>
-      {/* <Appbar /> */}
+      <Appbar />
       <Routes>
         <Route
           path="/home"
