@@ -188,7 +188,14 @@ export const Appbar = () => {
                   onClose={handleCloseUserMenu}
                 >
                   {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <MenuItem
+                      key={setting}
+                      onClick={
+                        setting === 'Logout'
+                          ? handleLogout
+                          : handleCloseUserMenu
+                      }
+                    >
                       <Button>{setting}</Button>
                     </MenuItem>
                   ))}
