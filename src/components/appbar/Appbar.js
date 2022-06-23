@@ -1,12 +1,25 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { BsHouseDoorFill, BsPersonCircle, BsBellFill } from 'react-icons/bs'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import Menu from '@mui/material/Menu'
+import MenuIcon from '@mui/icons-material/Menu'
+import Tooltip from '@mui/material/Tooltip'
+import MenuItem from '@mui/material/MenuItem'
+import Avatar from '@mui/material/Avatar'
 
 // import { startLogout } from '../../actions/auth'
 // import { openNotifications } from '../../actions/ui'
 
 // import './appbar.css'
+
+const pages = ['Login', 'Register']
+const settings = ['Profile', 'Logout']
 
 export const Appbar = () => {
   // const dispatch = useDispatch()
@@ -23,59 +36,166 @@ export const Appbar = () => {
     // dispatch(openNotifications())
   }
 
+  const [anchorElNav, setAnchorElNav] = React.useState(null)
+  const [anchorElUser, setAnchorElUser] = React.useState(null)
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget)
+  }
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget)
+  }
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null)
+  }
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null)
+  }
+
   return (
-    <div className="container-fluid">
-      <div className="row bg-primary justify-content-center text-light py-3">
-        <div className="col-auto col-sm-6 text-last">
-          <Link to={!!uid ? '/' : '/home'} className="text-light link-home">
-            <BsHouseDoorFill />
-            <span> UNI-Edu</span>
-          </Link>
-        </div>
-        <div className="col-auto">
-          {!!uid ? (
-            <Link to="/profile" className="text-light link-home">
-              <BsPersonCircle />
-              <span> {nombres[0]}</span>
-            </Link>
-          ) : (
-            <Link to="/auth/login" className="text-light link-home">
-              Login
-            </Link>
-          )}
-        </div>
-        <div className="col-auto">
-          {!!uid ? (
-            <button
-              className="btn text-light link-home ms-2 p-0 position-relative"
-              onClick={handleShowNotifications}
-            >
-              <BsBellFill />
-              {/* <span
-                className={`position-absolute top-0 end-0 badge rounded rounded-circle bg-danger p-1 ${
-                  notifications.length === 0 ? 'visually-hidden' : ''
-                }`}
+    <Box sx={{ display: 'flex' }}>
+      <AppBar component="nav" position="static">
+        {/* <Container maxWidth="xl"> */}
+        <Toolbar>
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href={!!uid ? '/' : '/home'}
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              // fontFamily: 'monospace',
+              fontWeight: 700,
+              // letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none'
+            }}
+          >
+            UNI-Edu
+          </Typography>
+
+          {!!uid ? null : (
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
               >
-                <span className="visually-hidden">+1</span>
-              </span> */}
-            </button>
-          ) : (
-            <Link to="/auth/register" className="text-light link-home">
-              Registrarse
-            </Link>
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left'
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left'
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' }
+                }}
+              >
+                {pages.map((page) => (
+                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <Button
+                      component={Link}
+                      to={`/auth/${page}`}
+                      // textAlign="center"
+                    >
+                      {page}
+                    </Button>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
           )}
-        </div>
-        {!!uid ? (
-          <div className="col-auto">
-            <button
-              className="btn text-light link-home ms-2 p-0"
-              onClick={handleLogout}
-            >
-              Salir
-            </button>
-          </div>
-        ) : null}
-      </div>
-    </div>
+
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href={!!uid ? '/' : '/home'}
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              // fontFamily: 'monospace',
+              fontWeight: 700,
+              // letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none'
+            }}
+          >
+            UNI-Edu
+          </Typography>
+
+          {!!uid ? null : (
+            <>
+              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} />
+              <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
+                {pages.map((page) => (
+                  <Button
+                    key={page}
+                    component={Link}
+                    to={`/auth/${page}`}
+                    sx={{ my: 2, color: 'white', display: 'block' }}
+                  >
+                    {page}
+                  </Button>
+                ))}
+              </Box>
+            </>
+          )}
+
+          {!!uid ? (
+            <>
+              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} />
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="User Name" src="/static/images/avatar/2.jpg" />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <Button>{setting}</Button>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+            </>
+          ) : null}
+        </Toolbar>
+        {/* </Container> */}
+      </AppBar>
+    </Box>
   )
 }

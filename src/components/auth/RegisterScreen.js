@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 // import { startRegister } from '../../actions/auth'
 
-import './form.css'
+// import './form.css'
 
 import 'moment/locale/es'
 
