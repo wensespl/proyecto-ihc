@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import Avatar from '@mui/material/Avatar'
 
-// import { startLogout } from '../../actions/auth'
+import { startLogout } from '../../redux/actions/auth'
 // import { openNotifications } from '../../actions/ui'
 
 // import './appbar.css'
@@ -22,19 +22,17 @@ const pages = ['Login', 'Register']
 const settings = ['Profile', 'Logout']
 
 export const Appbar = () => {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const { userId, name } = useSelector((state) => state.auth)
   // const { notifications } = useSelector((state) => state.notify)
 
-  const nombres = name !== undefined ? name.split(' ') : ['User']
-
   const handleLogout = () => {
-    // dispatch(startLogout())
+    dispatch(startLogout())
   }
 
-  const handleShowNotifications = () => {
-    // dispatch(openNotifications())
-  }
+  // const handleShowNotifications = () => {
+  //   dispatch(openNotifications())
+  // }
 
   const [anchorElNav, setAnchorElNav] = React.useState(null)
   const [anchorElUser, setAnchorElUser] = React.useState(null)
@@ -57,26 +55,7 @@ export const Appbar = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar component="nav" position="static">
-        {/* <Container maxWidth="xl"> */}
         <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href={!!userId ? '/' : '/home'}
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              // fontFamily: 'monospace',
-              fontWeight: 700,
-              // letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none'
-            }}
-          >
-            UNI-Edu
-          </Typography>
-
           {!!userId ? null : (
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
@@ -129,11 +108,10 @@ export const Appbar = () => {
             href={!!userId ? '/' : '/home'}
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              // display: { xs: 'flex', md: 'none' },
+              display: 'flex',
               flexGrow: 1,
-              // fontFamily: 'monospace',
               fontWeight: 700,
-              // letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none'
             }}
@@ -166,7 +144,7 @@ export const Appbar = () => {
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
-                      alt={nombres[0]}
+                      alt={name}
                       // src="/static/images/avatar/2.jpg"
                     />
                   </IconButton>
@@ -204,7 +182,6 @@ export const Appbar = () => {
             </>
           ) : null}
         </Toolbar>
-        {/* </Container> */}
       </AppBar>
     </Box>
   )

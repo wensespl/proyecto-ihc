@@ -7,7 +7,6 @@ export const startLogin = (email, password) => {
   return async (dispatch) => {
     const resp = await fetchSinToken('auth/login', { email, password }, 'POST')
     const body = await resp.json()
-    console.log(body)
 
     if (body.ok) {
       localStorage.setItem('token', body.token)
@@ -30,7 +29,6 @@ export const startRegister = (values) => {
   return async (dispatch) => {
     const resp = await fetchSinToken('auth/register', { ...values }, 'POST')
     const body = await resp.json()
-    console.log(body)
 
     if (body.ok) {
       localStorage.setItem('token', body.token)
@@ -53,7 +51,6 @@ export const startChecking = () => {
   return async (dispatch) => {
     const resp = await fetchConToken('auth/renew')
     const body = await resp.json()
-    console.log(body)
 
     if (body.ok) {
       localStorage.setItem('token', body.token)
@@ -96,7 +93,6 @@ export const startUpdateUser = (userId, data) => {
   return async (dispatch) => {
     const resp = await fetchConToken(`user/${userId}`, data, 'PUT')
     const body = await resp.json()
-    console.log(body)
 
     if (body.ok) {
       dispatch(updateUser(body.usuario))
