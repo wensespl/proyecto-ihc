@@ -1,28 +1,27 @@
 import React, { useState } from 'react'
-// import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import validator from 'validator'
 
-// import { startLogin } from '../../actions/auth'
+import { startLogin } from '../../redux/actions/auth'
 import { useForm } from '../../hooks/useForm'
-
-// import './form.css'
+import { Button, Container, Grid, TextField } from '@mui/material'
 
 export const LoginScreen = () => {
-  // const dispatch = useDispatch()
-  const [correoValid, setCorreoValid] = useState(true)
+  const dispatch = useDispatch()
+  const [emailValid, setEmailValid] = useState(true)
   const [passwordValid, setPasswordValid] = useState(true)
-  const [formValues, handleInputChange] = useForm({ correo: '', password: '' })
+  const [formValues, handleInputChange] = useForm({ email: '', password: '' })
 
-  const { correo, password } = formValues
+  const { email, password } = formValues
 
   const validateForm = () => {
     let valid = true
 
-    if (!validator.isEmail(correo)) {
-      setCorreoValid(false)
+    if (!validator.isEmail(email)) {
+      setEmailValid(false)
       valid = valid && false
-    } else setCorreoValid(true)
+    } else setEmailValid(true)
 
     if (password.length < 6) {
       setPasswordValid(false)
@@ -37,49 +36,72 @@ export const LoginScreen = () => {
     const isValid = validateForm()
 
     if (isValid) {
-      // dispatch(startLogin(correo, password))
+      dispatch(startLogin(email, password))
     } else return
   }
 
   return (
-    <div className="container text-center">
-      <div className="row align-items-center justify-content-center mt-5">
-        <div className="col-lg-5 shadow rounded form-container">
-          <form onSubmit={handleSubmit}>
-            <h3 className="mb-3">Inicio de Sesion</h3>
+    <Container>
+      <Grid
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
+        }}
+      >
+        <Grid item>
+          <form onSubmit={handleSubmit} noValidate autoComplete="off">
+            <Grid
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+              }}
+              container
+              spacing={2}
+            >
+              <Grid item>
+                <h3 className="mb-3">Inicio de Sesion</h3>
+              </Grid>
 
-            <div className="form-group text-start mb-2">
-              <label className="form-label">Email</label>
-              <input
-                type="email"
-                className={`form-control ${!correoValid && 'is-invalid'}`}
-                placeholder="Enter email"
-                name="correo"
-                value={correo}
-                onChange={handleInputChange}
-                autoComplete="off"
-              />
-            </div>
+              <Grid item>
+                <TextField
+                  required
+                  id="email"
+                  label="Email"
+                  placeholder="Enter email"
+                  name="email"
+                  value={email}
+                  onChange={handleInputChange}
+                  error={emailValid ? false : true}
+                />
+              </Grid>
 
-            <div className="form-group text-start mb-4">
-              <label className="form-label">Contraseña</label>
-              <input
-                type="password"
-                className={`form-control ${!passwordValid && 'is-invalid'}`}
-                placeholder="Enter password"
-                name="password"
-                value={password}
-                onChange={handleInputChange}
-              />
-            </div>
+              <Grid item>
+                <TextField
+                  required
+                  type="password"
+                  id="password"
+                  label="Password"
+                  placeholder="Enter password"
+                  name="password"
+                  value={password}
+                  onChange={handleInputChange}
+                  error={passwordValid ? false : true}
+                  helperText="Must be 6 characters long"
+                />
+              </Grid>
 
-            <div className="d-grid">
-              <button type="submit" className="btn btn-dark">
-                Login
-              </button>
-            </div>
+              <Grid item>
+                <Button variant="contained" type="submit" size="large">
+                  Login
+                </Button>
+              </Grid>
+            </Grid>
           </form>
+        </Grid>
 
+        <Grid item>
           <div className="mt-5">
             <hr />
 
@@ -90,8 +112,8 @@ export const LoginScreen = () => {
               </Link>
             </p>
           </div>
-        </div>
-      </div>
-    </div>
+        </Grid>
+      </Grid>
+    </Container>
   )
 }

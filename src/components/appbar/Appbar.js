@@ -23,7 +23,7 @@ const settings = ['Profile', 'Logout']
 
 export const Appbar = () => {
   // const dispatch = useDispatch()
-  const { uid, name } = useSelector((state) => state.auth)
+  const { userId, name } = useSelector((state) => state.auth)
   // const { notifications } = useSelector((state) => state.notify)
 
   const nombres = name !== undefined ? name.split(' ') : ['User']
@@ -63,7 +63,7 @@ export const Appbar = () => {
             variant="h6"
             noWrap
             component="a"
-            href={!!uid ? '/' : '/home'}
+            href={!!userId ? '/' : '/home'}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -77,7 +77,7 @@ export const Appbar = () => {
             UNI-Edu
           </Typography>
 
-          {!!uid ? null : (
+          {!!userId ? null : (
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
@@ -126,7 +126,7 @@ export const Appbar = () => {
             variant="h5"
             noWrap
             component="a"
-            href={!!uid ? '/' : '/home'}
+            href={!!userId ? '/' : '/home'}
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -141,7 +141,7 @@ export const Appbar = () => {
             UNI-Edu
           </Typography>
 
-          {!!uid ? null : (
+          {!!userId ? null : (
             <>
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} />
               <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
@@ -159,7 +159,7 @@ export const Appbar = () => {
             </>
           )}
 
-          {!!uid ? (
+          {!!userId ? (
             <>
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} />
               <Box sx={{ flexGrow: 0 }}>
