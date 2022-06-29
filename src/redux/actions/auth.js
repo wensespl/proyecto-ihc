@@ -28,7 +28,7 @@ export const startLogin = (email, password) => {
 
 export const startRegister = (values) => {
   return async (dispatch) => {
-    const resp = await fetchSinToken('auth/login', { ...values }, 'POST')
+    const resp = await fetchSinToken('auth/register', { ...values }, 'POST')
     const body = await resp.json()
     console.log(body)
 

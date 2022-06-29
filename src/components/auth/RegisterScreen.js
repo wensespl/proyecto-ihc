@@ -46,7 +46,7 @@ export const RegisterScreen = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const isValid = validateForm()
-    console.log(formValues)
+
     if (isValid) {
       dispatch(startRegister(formValues))
     } else return
@@ -105,6 +105,7 @@ export const RegisterScreen = () => {
               <Grid item>
                 <TextField
                   required
+                  type="password"
                   id="password"
                   label="Password"
                   placeholder="Enter password"
