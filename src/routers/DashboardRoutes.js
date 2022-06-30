@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { AppScreen } from '../components/dashboard/AppScreen'
-import { CommentsScreen } from '../components/dashboard/Comment/CommentsScreen'
+import { CommentsScreen } from '../components/dashboard/comment/CommentsScreen'
 import { CourseScreen } from '../components/dashboard/course/CourseScreen'
 // import { ProfileScreen } from '../components/dashboard/ProfileScreen'
 
