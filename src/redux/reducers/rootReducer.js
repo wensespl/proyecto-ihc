@@ -1,13 +1,11 @@
 import { combineReducers } from 'redux'
 
 import { authReducer } from './authReducer'
-// import { tripReducer } from './tripReducer'
+import { courseReducer } from './courseReducer'
 // import { uiReducer } from './uiReducer'
-// import { notifyReducer } from './notifyReducer'
 
 export const rootReducer = combineReducers({
-  // trip: tripReducer,
+  course: courseReducer,
   auth: authReducer
   // ui: uiReducer,
-  // notify: notifyReducer
 })
