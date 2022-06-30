@@ -1,12 +1,14 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { CssBaseline } from '@mui/material'
 
 import { AppRouter } from './routers/AppRouter'
 import { store } from './redux/store/store'
-import { CssBaseline } from '@mui/material'
 
-const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
+export const ColorModeContext = React.createContext({
+  toggleColorMode: () => {}
+})
 
 export const App = () => {
   const [mode, setMode] = React.useState('light')
