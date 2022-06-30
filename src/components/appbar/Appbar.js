@@ -90,10 +90,14 @@ export const Appbar = () => {
                   </MenuItem>
                 ) : null}
                 <MenuItem key="ver_curso" onClick={handleCloseNavMenu}>
-                  <Button onClick={() => {}}>Ver curso</Button>
+                  <Button component={Link} to="/course">
+                    Ver curso
+                  </Button>
                 </MenuItem>
                 <MenuItem key="comentarios" onClick={handleCloseNavMenu}>
-                  <Button onClick={() => {}}>Comentarios</Button>
+                  <Button component={Link} to="/comments">
+                    Comentarios
+                  </Button>
                 </MenuItem>
               </Menu>
             </Box>
@@ -188,12 +192,16 @@ export const Appbar = () => {
 
                 <Button
                   key="ver_curso"
+                  component={Link}
+                  to="/course"
                   sx={{ color: 'white', display: 'block' }}
                 >
                   Ver curso
                 </Button>
                 <Button
                   key="comentarios"
+                  component={Link}
+                  to="/comments"
                   sx={{ color: 'white', display: 'block' }}
                 >
                   Comentarios

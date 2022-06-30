@@ -9,8 +9,8 @@ export const DashboardRoutes = () => {
     <div>
       <Routes>
         {/* <Route path="/profile" element={<ProfileScreen />} /> */}
-        <Route path="/commets" element={<CommentsScreen />} />
         <Route path="/course" element={<CourseScreen />} />
+        <Route path="/comments" element={<CommentsScreen />} />
         <Route path="/" element={<AppScreen />} />
       </Routes>
     </div>
