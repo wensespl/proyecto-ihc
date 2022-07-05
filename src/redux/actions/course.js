@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2'
 
-import { fetchConToken } from '../helpers/fetch'
+import { fetchConToken } from '../../helpers/fetch'
 import { types } from '../types'
 
 export const startGetCourses = () => {
