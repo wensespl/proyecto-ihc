@@ -3,17 +3,25 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardHeader
+  CardHeader,
+  Typography
 } from '@mui/material'
 import React from 'react'
 
 export const CourseItem = () => {
   return (
-    <Card sx={{ minWidth: 250, maxWidth: 300 }}>
-      <CardHeader title="Titulo" />
-      <CardContent>Contenido</CardContent>
+    <Card minWidth="200" variant="outlined">
+      <CardContent>
+        <Typography color="textSecondary" gutterBottom>
+          Icono
+        </Typography>
+        <Typography variant="h5" component="h2">
+          Machine Learning
+        </Typography>
+        <Typography color="textSecondary">2/4 tareas realizadas</Typography>
+      </CardContent>
       <CardActions>
-        <Button size="small">Unirse</Button>
+        <Button size="small">Learn More</Button>
       </CardActions>
     </Card>
   )
