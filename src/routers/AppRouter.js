@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
+
 import { startChecking } from '../redux/actions/auth'
 import { Appbar } from '../components/appbar/Appbar'
 import { HomeScreen } from '../components/HomeScreen'

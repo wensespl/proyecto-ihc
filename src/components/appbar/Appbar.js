@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import AppBar from '@mui/material/AppBar'
@@ -15,6 +15,8 @@ import Avatar from '@mui/material/Avatar'
 import { useTheme } from '@mui/material/styles'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
+import { useSpeechContext } from '@speechly/react-client'
+import { useNavigate } from 'react-router-dom'
 
 import { ColorModeContext } from '../../App'
 import { startLogout } from '../../redux/actions/auth'
@@ -27,6 +29,8 @@ export const Appbar = () => {
   const dispatch = useDispatch()
   const { userId, name, role } = useSelector((state) => state.auth)
   const { activeCourse } = useSelector((state) => state.course)
+  const { segment } = useSpeechContext()
+  const navigate = useNavigate()
   const theme = useTheme()
   const colorMode = React.useContext(ColorModeContext)
 
@@ -51,6 +55,19 @@ export const Appbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
+
+  useEffect(() => {
+    if (segment) {
+      console.log(segment)
+      if (
+        segment.intent?.isFinal &&
+        (segment.intent.intent === 'login' ||
+          segment.intent.intent === 'register')
+      ) {
+        navigate(`/auth/${segment.intent.intent}`, { replace: true })
+      }
+    }
+  }, [segment, navigate])
 
   return (
     <Box sx={{ display: 'flex' }}>

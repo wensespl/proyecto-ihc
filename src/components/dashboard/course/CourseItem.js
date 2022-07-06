@@ -3,20 +3,19 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardHeader,
   Typography
 } from '@mui/material'
 import React from 'react'
 
-export const CourseItem = () => {
+export const CourseItem = ({ ...props }) => {
   return (
-    <Card minWidth="200" variant="outlined">
+    <Card sx={{ minWidth: 200 }} variant="outlined">
       <CardContent>
         <Typography color="textSecondary" gutterBottom>
           Icono
         </Typography>
         <Typography variant="h5" component="h2">
-          Machine Learning
+          {props.name}
         </Typography>
         <Typography color="textSecondary">2/4 tareas realizadas</Typography>
       </CardContent>
