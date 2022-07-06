@@ -1,5 +1,6 @@
+import { Container } from '@mui/material'
 import React from 'react'
 
 export const HomeScreen = () => {
-  return <div></div>
+  return <Container></Container>
 }

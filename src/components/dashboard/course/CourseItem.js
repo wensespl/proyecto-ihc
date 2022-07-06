@@ -15,7 +15,7 @@ export const CourseItem = ({ ...props }) => {
           Icono
         </Typography>
         <Typography variant="h5" component="h2">
-          {props.name}
+          {props.name ? props.name : 'Nombre de curso'}
         </Typography>
         <Typography color="textSecondary">2/4 tareas realizadas</Typography>
       </CardContent>

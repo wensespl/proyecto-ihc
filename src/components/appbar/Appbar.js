@@ -127,7 +127,16 @@ export const Appbar = () => {
                       Crear
                     </Button>
                   </MenuItem>
-                ) : null}
+                ) : (
+                  <Button
+                    key="buscar_curso"
+                    component={Link}
+                    to="/search"
+                    sx={{ color: 'white', display: 'block' }}
+                  >
+                    Buacar cursos
+                  </Button>
+                )}
                 {!!activeCourse ? (
                   <>
                     <MenuItem key="ver_curso" onClick={handleCloseNavMenu}>
@@ -233,7 +242,16 @@ export const Appbar = () => {
                   >
                     Crear
                   </Button>
-                ) : null}
+                ) : (
+                  <Button
+                    key="buscar_curso"
+                    component={Link}
+                    to="/search"
+                    sx={{ color: 'white', display: 'block' }}
+                  >
+                    Buacar cursos
+                  </Button>
+                )}
                 {!!activeCourse ? (
                   <>
                     <Button
