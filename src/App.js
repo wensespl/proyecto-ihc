@@ -32,6 +32,9 @@ export const App = () => {
       createTheme({
         palette: {
           mode
+        },
+        typography: {
+          fontSize: 16
         }
       }),
     [mode]
