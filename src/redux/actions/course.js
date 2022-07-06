@@ -23,28 +23,10 @@ const loadCourses = (courses) => ({
 // export const buscarcourses = (filters) => {
 //   return async (dispatch, getState) => {
 //     try {
-//       const { uid } = getState().auth
-//       const { desde, hasta, fecha } = filters
+//       const { userId } = getState().auth
 //       const resp = await fetchConToken('courses/')
 //       const body = await resp.json()
-//       const courses = preparecourses(body.courses)
-//       const coursesFiltered = courses.filter((course) => {
-//         if (
-//           !course.listaespera.includes(uid) &&
-//           !course.pasajeros.includes(uid) &&
-//           moment(course.fecha).isAfter(now) &&
-//           course.asientos !== 0
-//         )
-//           return desde === ''
-//             ? true
-//             : course.desde === desde && hasta === ''
-//             ? true
-//             : courses.hasta === hasta && (fecha === '' || fecha === null)
-//             ? true
-//             : course.fecha === fecha
-//         else return false
-//       })
-//       dispatch(guardarBusqueda(coursesFiltered))
+//       dispatch(guardarBusqueda(body.courses))
 //     } catch (error) {
 //       console.log(error)
 //     }
@@ -58,9 +40,9 @@ const loadCourses = (courses) => ({
 
 // export const startUnirse = () => {
 //   return async (dispatch, getState) => {
-//     const { activecourse } = getState().trip
-//     const { uid } = activecourse
-//     const resp = await fetchConToken(`courses/joincourse/${uid}`, {}, 'PUT')
+//     const { activecourse } = getState().course
+//     const { courseId } = activecourse
+//     const resp = await fetchConToken(`courses/joincourse/${courseId}`, {}, 'PUT')
 //     const body = await resp.json()
 //     body.joined.joined = false
 //     body.joined.inlist = true
@@ -115,11 +97,11 @@ export const clearActiveCourse = () => ({
 export const startDeleteCourse = () => {
   return async (dispatch, getState) => {
     const { activecourse } = getState().trip
-    const { uid } = activecourse
-    const resp = await fetchConToken(`courses/${uid}`, {}, 'DELETE')
+    const { courseId } = activecourse
+    const resp = await fetchConToken(`course/${courseId}`, {}, 'DELETE')
     const body = await resp.json()
     if (body.ok) {
-      dispatch(deletecourse(uid))
+      dispatch(deletecourse(courseId))
       Swal.fire('Success', 'course eliminado', 'success')
     } else {
       Swal.fire('Error', body.msg, 'error')
@@ -127,7 +109,7 @@ export const startDeleteCourse = () => {
   }
 }
 
-const deletecourse = (uid) => ({
-  type: types.coursesDelete,
-  payload: uid
+const deletecourse = (courseId) => ({
+  type: types.courseDelete,
+  payload: courseId
 })
