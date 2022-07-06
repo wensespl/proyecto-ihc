@@ -83,7 +83,7 @@ export const startCrearCourse = (course) => {
     const { userId, role } = getState().auth
     course.owner = userId
     course.role = role
-    const resp = await fetchConToken('courses/', course, 'POST')
+    const resp = await fetchConToken('course/', course, 'POST')
     const body = await resp.json()
     if (body.ok) {
       dispatch(crearCourse(body.course))

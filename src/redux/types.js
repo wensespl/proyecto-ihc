@@ -11,5 +11,8 @@ export const types = {
   courseDelete: '[Course] Delete curso',
   courseSetActive: '[Course] Set Active Course',
   courseClearActive: '[Course] Clear Active Course',
-  courseClear: '[Course] Clear course'
+  courseClear: '[Course] Clear course',
+
+  uiOpenModalCrear: '[Ui] Open Crear Modal',
+  uiCloseModalCrear: '[Ui] Close Crear Modal'
 }

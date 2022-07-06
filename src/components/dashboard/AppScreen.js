@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { startGetCourses } from '../../redux/actions/course'
 import { Baner } from '../Baner'
+import { CrearModal } from '../modals/CrearModal'
 import { CourseItem } from './course/CourseItem'
 
 export const AppScreen = () => {
@@ -27,7 +28,8 @@ export const AppScreen = () => {
           </Grid>
         ))}
       </Grid> */}
-      <Baner />
+      {role === 'PROFESOR_ROLE' ? null : <Baner />}
+
       <Typography
         // sx={{ fontSize: 24, color: 'warning.main' }}
         variant="h5"
@@ -51,6 +53,7 @@ export const AppScreen = () => {
           </Grid>
         ))}
       </Grid>
+      <CrearModal />
     </Container>
   )
 }

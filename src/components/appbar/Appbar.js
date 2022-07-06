@@ -18,6 +18,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7'
 
 import { ColorModeContext } from '../../App'
 import { startLogout } from '../../redux/actions/auth'
+import { openCrearModal } from '../../redux/actions/ui'
 
 const pages = ['Login', 'Register']
 const settings = ['Profile', 'Logout']
@@ -25,6 +26,7 @@ const settings = ['Profile', 'Logout']
 export const Appbar = () => {
   const dispatch = useDispatch()
   const { userId, name, role } = useSelector((state) => state.auth)
+  const { activeCourse } = useSelector((state) => state.course)
   const theme = useTheme()
   const colorMode = React.useContext(ColorModeContext)
 
@@ -86,19 +88,29 @@ export const Appbar = () => {
               >
                 {role === 'PROFESOR_ROLE' ? (
                   <MenuItem key="crear" onClick={handleCloseNavMenu}>
-                    <Button onClick={() => {}}>Crear</Button>
+                    <Button
+                      onClick={() => {
+                        dispatch(openCrearModal())
+                      }}
+                    >
+                      Crear
+                    </Button>
                   </MenuItem>
                 ) : null}
-                <MenuItem key="ver_curso" onClick={handleCloseNavMenu}>
-                  <Button component={Link} to="/course">
-                    Ver curso
-                  </Button>
-                </MenuItem>
-                <MenuItem key="comentarios" onClick={handleCloseNavMenu}>
-                  <Button component={Link} to="/comments">
-                    Comentarios
-                  </Button>
-                </MenuItem>
+                {!!activeCourse ? (
+                  <>
+                    <MenuItem key="ver_curso" onClick={handleCloseNavMenu}>
+                      <Button component={Link} to="/course">
+                        Ver curso
+                      </Button>
+                    </MenuItem>
+                    <MenuItem key="comentarios" onClick={handleCloseNavMenu}>
+                      <Button component={Link} to="/comments">
+                        Comentarios
+                      </Button>
+                    </MenuItem>
+                  </>
+                ) : null}
               </Menu>
             </Box>
           ) : (
@@ -184,28 +196,33 @@ export const Appbar = () => {
                   <Button
                     key="crear"
                     sx={{ color: 'white', display: 'block' }}
-                    onClick={() => {}}
+                    onClick={() => {
+                      dispatch(openCrearModal())
+                    }}
                   >
                     Crear
                   </Button>
                 ) : null}
-
-                <Button
-                  key="ver_curso"
-                  component={Link}
-                  to="/course"
-                  sx={{ color: 'white', display: 'block' }}
-                >
-                  Ver curso
-                </Button>
-                <Button
-                  key="comentarios"
-                  component={Link}
-                  to="/comments"
-                  sx={{ color: 'white', display: 'block' }}
-                >
-                  Comentarios
-                </Button>
+                {!!activeCourse ? (
+                  <>
+                    <Button
+                      key="ver_curso"
+                      component={Link}
+                      to="/course"
+                      sx={{ color: 'white', display: 'block' }}
+                    >
+                      Ver curso
+                    </Button>
+                    <Button
+                      key="comentarios"
+                      component={Link}
+                      to="/comments"
+                      sx={{ color: 'white', display: 'block' }}
+                    >
+                      Comentarios
+                    </Button>
+                  </>
+                ) : null}
               </Box>
               <Box sx={{ flexGrow: 1, display: 'flex' }} />
               <IconButton
