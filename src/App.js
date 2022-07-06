@@ -52,10 +52,9 @@ export const App = () => {
           <Grid
             container
             direction="column"
-            // position="absolute"
             justifyContent="flex-end"
             alignItems="flex-end"
-            // sx={{ top: 50, right: 90 }}
+            sx={{ position: 'absolute', top: '40%' }}
           >
             <Grid item>
               <PushToTalkButton
