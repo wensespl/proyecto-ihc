@@ -2,6 +2,7 @@ import { Container, Grid, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { startGetCourses } from '../../redux/actions/course'
+import { Baner } from '../Baner'
 import { CourseItem } from './course/CourseItem'
 
 export const AppScreen = () => {
@@ -26,8 +27,10 @@ export const AppScreen = () => {
           </Grid>
         ))}
       </Grid> */}
+      <Baner />
       <Typography
-        sx={{ fontSize: 24, color: 'warning.main' }}
+        // sx={{ fontSize: 24, color: 'warning.main' }}
+        variant="h5"
         align="left"
         paddingLeft="3%"
         paddingTop="2%"
