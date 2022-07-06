@@ -6,6 +6,7 @@ import {
   Typography
 } from '@mui/material'
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 export const CourseItem = ({ ...props }) => {
   return (
@@ -20,7 +21,15 @@ export const CourseItem = ({ ...props }) => {
         <Typography color="textSecondary">2/4 tareas realizadas</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        {/*<Button size="small">Learn More</Button>*/}
+        <Button
+          key="buscar_curso"
+          component={Link}
+          to="/search"
+          sx={{ color: 'white', display: 'block'}}
+        >
+          Buscar cursos
+        </Button>
       </CardActions>
     </Card>
   )
