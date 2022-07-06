@@ -1,7 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import { Box, Button, CssBaseline, Grid, IconButton } from '@mui/material'
+import { Box, CssBaseline, Grid, IconButton } from '@mui/material'
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded'
 import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded'
 import { SpeechProvider } from '@speechly/react-client'
@@ -18,10 +18,17 @@ export const ColorModeContext = React.createContext({
 
 export const App = () => {
   const [mode, setMode] = React.useState('light')
+  const [fontSize, setFontSize] = React.useState(14)
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
         setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'))
+      },
+      addFontSize: () => {
+        setFontSize((prevSize) => prevSize + 2)
+      },
+      subFontSize: () => {
+        setFontSize((prevSize) => prevSize - 2)
       }
     }),
     []
@@ -34,10 +41,10 @@ export const App = () => {
           mode
         },
         typography: {
-          fontSize: 16
+          fontSize
         }
       }),
-    [mode]
+    [mode, fontSize]
   )
 
   return (
@@ -69,12 +76,20 @@ export const App = () => {
               />
             </Grid>
             <Grid item>
-              <IconButton size="large" sx={{ fontSize: 70 }}>
+              <IconButton
+                onClick={colorMode.addFontSize}
+                size="large"
+                sx={{ fontSize: 70 }}
+              >
                 <AddCircleRoundedIcon fontSize="inherit" />
               </IconButton>
             </Grid>
             <Grid item>
-              <IconButton size="large" sx={{ fontSize: 70 }}>
+              <IconButton
+                onClick={colorMode.subFontSize}
+                size="large"
+                sx={{ fontSize: 70 }}
+              >
                 <RemoveCircleRoundedIcon fontSize="inherit" />
               </IconButton>
             </Grid>
