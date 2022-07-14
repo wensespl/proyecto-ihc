@@ -62,7 +62,6 @@ export default function BasicCard() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    console.log(text)
     dispatch(buscarCourses())
   }
 
@@ -88,7 +87,7 @@ export default function BasicCard() {
             fontWeight={600}
             marginTop={2}
           >
-            Explora más de 30 cursos
+            Explore more than 30 courses
           </Typography>
         </CardContent>
         <Box

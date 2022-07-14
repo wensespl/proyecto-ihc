@@ -8,7 +8,11 @@ export const startGetCourses = () => {
     try {
       const resp = await fetchConToken('course/user')
       const body = await resp.json()
-      dispatch(loadCourses(body.courses))
+      let courses = body.courses
+      courses.forEach((course) => {
+        course.joined = true
+      })
+      dispatch(loadCourses(courses))
     } catch (error) {
       console.log(error)
     }
@@ -25,7 +29,11 @@ export const buscarCourses = (filters) => {
     try {
       const resp = await fetchConToken('course/')
       const body = await resp.json()
-      dispatch(guardarBusqueda(body.courses))
+      let courses = body.courses
+      courses.forEach((course) => {
+        course.joined = false
+      })
+      dispatch(guardarBusqueda(courses))
     } catch (error) {
       console.log(error)
     }
@@ -37,27 +45,23 @@ const guardarBusqueda = (courses) => ({
   payload: courses
 })
 
-// export const startUnirse = () => {
-//   return async (dispatch, getState) => {
-//     const { activecourse } = getState().course
-//     const { courseId } = activecourse
-//     const resp = await fetchConToken(`courses/joincourse/${courseId}`, {}, 'PUT')
-//     const body = await resp.json()
-//     body.joined.joined = false
-//     body.joined.inlist = true
-//     if (body.ok) {
-//       dispatch(solicitarUnirse(body.joined))
-//       Swal.fire('Success', 'Solicitud enviada', 'success')
-//     } else {
-//       Swal.fire('Error', body.msg, 'error')
-//     }
-//   }
-// }
+export const startUnirse = (courseId) => {
+  return async (dispatch) => {
+    const resp = await fetchConToken('course/user/', { courseId }, 'PUT')
+    const body = await resp.json()
+    if (body.ok) {
+      dispatch(unirse(body.course))
+      Swal.fire('Success', 'Jined the course', 'success')
+    } else {
+      Swal.fire('Error', body.msg, 'error')
+    }
+  }
+}
 
-// const solicitarUnirse = (course) => ({
-//   type: types.coursesSolicitarUnirse,
-//   payload: course
-// })
+const unirse = (course) => ({
+  type: types.courseUnirse,
+  payload: course
+})
 
 export const startCrearCourse = (course) => {
   return async (dispatch, getState) => {
