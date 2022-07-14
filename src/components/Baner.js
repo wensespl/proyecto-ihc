@@ -9,9 +9,11 @@ import {
 import { useSelector } from 'react-redux'
 import { Box } from '@mui/system'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export const Baner = () => {
   const { name } = useSelector((state) => state.auth)
+  const navigate = useNavigate()
 
   return (
     <Card
@@ -28,10 +30,10 @@ export const Baner = () => {
             paddingTop="2%"
             gutterBottom
           >
-            Hola, {!!name ? name : 'Usuario'}
+            Hello, {!!name ? name : 'Usuario'}
           </Typography>
           <Typography variant="h3" align="left" paddingLeft="3%">
-            Elige y empieza a aprender un nuevo tema
+            Choose and start learning a new topic.
           </Typography>
         </CardContent>
         <Box
@@ -39,9 +41,15 @@ export const Baner = () => {
           marginLeft="3%"
         >
           <CardActions sx={{ display: 'flex' }}>
-            <Button variant="contained" size="small">
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() => {
+                navigate('/search', { replace: true })
+              }}
+            >
               <Typography variant="subtitle2" align="left" paddingLeft="3%">
-                Empezar
+                Start
               </Typography>
             </Button>
           </CardActions>

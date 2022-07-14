@@ -1,12 +1,15 @@
 import React from 'react'
-
 import Typography from '@mui/material/Typography'
-import { CourseItem } from '../course/CourseItem'
+import { useSelector } from 'react-redux'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
+
+import { CourseItem } from '../course/CourseItem'
 import SearchBar from './SearchBar'
 
 function SearchCourseScreen() {
+  const { busqueda } = useSelector((state) => state.course)
+
   return (
     <div>
       <Box
@@ -91,7 +94,7 @@ function SearchCourseScreen() {
           alignItems="center"
           alignContent="center"
         >
-          <SearchBar border={1}></SearchBar>
+          <SearchBar border={1} />
         </Box>
 
         <Box
@@ -102,7 +105,7 @@ function SearchCourseScreen() {
           alignContent="center"
           margin="auto"
         >
-          <Typography
+          {/* <Typography
             sx={{ fontSize: 18, color: 'black' }}
             align="left"
             paddingLeft="3%"
@@ -110,24 +113,21 @@ function SearchCourseScreen() {
             gutterBottom
           >
             Tecnologias de la Información
-          </Typography>
+          </Typography> */}
 
           <Grid
             container
             spacing={4}
             paddingLeft="40px"
             paddingRight="40px"
+            marginTop={2}
             justify="center"
           >
-            <Grid item xs={12} sm={6} md={4}>
-              <CourseItem />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <CourseItem />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <CourseItem />
-            </Grid>
+            {busqueda.map((course) => (
+              <Grid item xs={12} sm={6} md={4} key={course.courseId}>
+                <CourseItem {...course} />
+              </Grid>
+            ))}
           </Grid>
         </Box>
 

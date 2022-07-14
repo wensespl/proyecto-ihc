@@ -20,23 +20,22 @@ const loadCourses = (courses) => ({
   payload: courses
 })
 
-// export const buscarcourses = (filters) => {
-//   return async (dispatch, getState) => {
-//     try {
-//       const { userId } = getState().auth
-//       const resp = await fetchConToken('courses/')
-//       const body = await resp.json()
-//       dispatch(guardarBusqueda(body.courses))
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   }
-// }
+export const buscarCourses = (filters) => {
+  return async (dispatch) => {
+    try {
+      const resp = await fetchConToken('course/')
+      const body = await resp.json()
+      dispatch(guardarBusqueda(body.courses))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 
-// const guardarBusqueda = (courses) => ({
-//   type: types.coursesGuardar,
-//   payload: courses
-// })
+const guardarBusqueda = (courses) => ({
+  type: types.courseGuardar,
+  payload: courses
+})
 
 // export const startUnirse = () => {
 //   return async (dispatch, getState) => {
