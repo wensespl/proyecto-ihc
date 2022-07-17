@@ -9,6 +9,7 @@ import { AuthRoutes } from './AuthRoutes'
 import { DashboardRoutes } from './DashboardRoutes'
 import { PrivateRoute } from './PrivateRoute'
 import { PublicRoute } from './PublicRoute'
+import { HelpButtons } from '../components/buttons/HelpButtons'
 
 export const AppRouter = () => {
   const dispatch = useDispatch()
@@ -51,6 +52,7 @@ export const AppRouter = () => {
           }
         />
       </Routes>
+      <HelpButtons />
     </BrowserRouter>
   )
 }

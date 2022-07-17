@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import AppBar from '@mui/material/AppBar'
@@ -15,8 +15,6 @@ import Avatar from '@mui/material/Avatar'
 import { useTheme } from '@mui/material/styles'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
-import { useSpeechContext } from '@speechly/react-client'
-import { useNavigate } from 'react-router-dom'
 
 import { ColorModeContext } from '../../App'
 import { startLogout } from '../../redux/actions/auth'
@@ -29,8 +27,6 @@ export const Appbar = () => {
   const dispatch = useDispatch()
   const { userId, name, role } = useSelector((state) => state.auth)
   const { activeCourse } = useSelector((state) => state.course)
-  const { segment } = useSpeechContext()
-  const navigate = useNavigate()
   const theme = useTheme()
   const colorMode = React.useContext(ColorModeContext)
 
@@ -55,33 +51,6 @@ export const Appbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
-
-  useEffect(() => {
-    if (segment) {
-      if (segment.intent?.isFinal) {
-        if (segment.intent.intent === 'navigate_to') {
-          var route = ''
-          if (
-            segment.entities[0].value.toLowerCase() === 'login' ||
-            segment.entities[0].value.toLowerCase() === 'register'
-          ) {
-            route = `/auth/${segment.entities[0].value.toLowerCase()}`
-          } else {
-            route = `/${segment.entities[0].value.toLowerCase()}`
-          }
-          navigate(route, { replace: true })
-        }
-        if (segment.intent.intent === 'do') {
-          if (segment.entities[0].value.toLowerCase() === 'log out') {
-            dispatch(startLogout())
-          }
-          if (segment.entities[0].value.toLowerCase() === 'create course') {
-            dispatch(openCrearModal())
-          }
-        }
-      }
-    }
-  }, [segment, navigate, dispatch])
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -134,7 +103,7 @@ export const Appbar = () => {
                     to="/search"
                     sx={{ color: 'white', display: 'block' }}
                   >
-                    Buacar cursos
+                    Buscar cursos
                   </Button>
                 )}
                 {!!activeCourse ? (
@@ -249,7 +218,7 @@ export const Appbar = () => {
                     to="/search"
                     sx={{ color: 'white', display: 'block' }}
                   >
-                    Buacar cursos
+                    Buscar cursos
                   </Button>
                 )}
                 {!!activeCourse ? (
