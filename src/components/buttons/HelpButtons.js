@@ -4,21 +4,65 @@ import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded'
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice'
 import { Grid, IconButton } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { createSpeechlySpeechRecognition } from '@speechly/speech-recognition-polyfill'
 
 import { ColorModeContext } from '../../App'
+import { startLogout } from '../../redux/actions/auth'
+import { openCrearModal } from '../../redux/actions/ui'
 
 export const HelpButtons = () => {
   const colorMode = useContext(ColorModeContext)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const appId = process.env.REACT_APP_SPEECHLY_ID
   const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId)
   const speechRecognition = new SpeechlySpeechRecognition()
   speechRecognition.continuous = true
 
-  const handleResult = useCallback(({ results }) => {
-    console.log(results[0][0].transcript)
-  }, [])
+  const handleResult = useCallback(
+    ({ results }) => {
+      const transcript = results[0][0].transcript.toLowerCase()
+      const commands = [
+        {
+          text: 'login',
+          callback: () => {
+            navigate('/auth/login')
+          }
+        },
+        {
+          text: 'register',
+          callback: () => {
+            navigate('/auth/register')
+          }
+        },
+        {
+          text: 'home',
+          callback: () => {
+            navigate('/home')
+          }
+        },
+        {
+          text: 'log out',
+          callback: () => {
+            dispatch(startLogout())
+          }
+        },
+        {
+          text: 'create new course',
+          callback: () => {
+            dispatch(openCrearModal)
+          }
+        }
+      ]
+
+      commands.forEach((command) => {
+        if (transcript.includes(command.text)) return command.callback()
+        console.log(transcript)
+      })
+    },
+    [navigate, dispatch]
+  )
 
   useEffect(() => {
     speechRecognition.onresult = handleResult
@@ -30,7 +74,7 @@ export const HelpButtons = () => {
       direction="column"
       justifyContent="flex-end"
       alignItems="flex-end"
-      sx={{ width: 100, position: 'fixed', top: '30%' }}
+      sx={{ width: 80, position: 'fixed', top: '30%' }}
     >
       <Grid item>
         <IconButton
