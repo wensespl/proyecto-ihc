@@ -57,8 +57,7 @@ export const HelpButtons = () => {
       ]
 
       commands.forEach((command) => {
-        if (transcript.includes(command.text)) return command.callback()
-        console.log(transcript)
+        if (transcript.includes(command.text)) command.callback()
       })
     },
     [navigate, dispatch]
@@ -72,8 +71,8 @@ export const HelpButtons = () => {
     <Grid
       container
       direction="column"
-      justifyContent="flex-end"
-      alignItems="flex-end"
+      justifyContent="flex-start"
+      alignItems="flex-start"
       sx={{ width: 80, position: 'fixed', top: '30%' }}
     >
       <Grid item>
@@ -83,6 +82,7 @@ export const HelpButtons = () => {
           onTouchEndCapture={speechRecognition.stop}
           onMouseUpCapture={speechRecognition.stop}
           size="large"
+          color="inherit"
           sx={{ fontSize: 70 }}
         >
           <KeyboardVoiceIcon fontSize="inherit" />
@@ -92,6 +92,7 @@ export const HelpButtons = () => {
         <IconButton
           onClick={colorMode.addFontSize}
           size="large"
+          color="inherit"
           sx={{ fontSize: 70 }}
         >
           <AddCircleRoundedIcon fontSize="inherit" />
@@ -101,6 +102,7 @@ export const HelpButtons = () => {
         <IconButton
           onClick={colorMode.subFontSize}
           size="large"
+          color="inherit"
           sx={{ fontSize: 70 }}
         >
           <RemoveCircleRoundedIcon fontSize="inherit" />

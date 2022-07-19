@@ -74,6 +74,7 @@ export const LoginScreen = () => {
                   value={email}
                   onChange={handleInputChange}
                   error={emailValid ? false : true}
+                  variant="outlined"
                 />
               </Grid>
 

@@ -96,29 +96,34 @@ export const Appbar = () => {
                       Crear
                     </Button>
                   </MenuItem>
-                ) : (
-                  <Button
-                    key="buscar_curso"
-                    component={Link}
-                    to="/search"
-                    sx={{ color: 'white', display: 'block' }}
-                  >
-                    Buscar cursos
-                  </Button>
-                )}
-                {!!activeCourse ? (
-                  <>
-                    <MenuItem key="ver_curso" onClick={handleCloseNavMenu}>
-                      <Button component={Link} to="/course">
-                        Ver curso
+                ) : null}
+                {role === 'ALUMNO_ROLE' && !!activeCourse ? (
+                  <MenuItem key="ver_curso" onClick={handleCloseNavMenu}>
+                    <Button component={Link} to="/course">
+                      Ver curso
+                    </Button>
+                  </MenuItem>
+                ) : null}
+                {role === 'ALUMNO_ROLE' && !!activeCourse ? (
+                  <MenuItem key="comentarios" onClick={handleCloseNavMenu}>
+                    <Button component={Link} to="/comments">
+                      Comentarios
+                    </Button>
+                  </MenuItem>
+                ) : null}
+                {role === 'ALUMNO_ROLE' ? (
+                  !!activeCourse ? null : (
+                    <MenuItem key="buscar" onClick={handleCloseNavMenu}>
+                      <Button
+                        key="buscar_curso"
+                        component={Link}
+                        to="/search"
+                        sx={{ display: 'block' }}
+                      >
+                        Buscar cursos
                       </Button>
                     </MenuItem>
-                    <MenuItem key="comentarios" onClick={handleCloseNavMenu}>
-                      <Button component={Link} to="/comments">
-                        Comentarios
-                      </Button>
-                    </MenuItem>
-                  </>
+                  )
                 ) : null}
               </Menu>
             </Box>
@@ -183,6 +188,18 @@ export const Appbar = () => {
           {!!userId ? null : (
             <>
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} />
+              <IconButton
+                sx={{ mr: 2 }}
+                onClick={colorMode.toggleColorMode}
+                color="inherit"
+              >
+                {theme.palette.mode === 'dark' ? (
+                  <Brightness7Icon />
+                ) : (
+                  <Brightness4Icon />
+                )}
+              </IconButton>
+
               <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
                 {pages.map((page) => (
                   <Button
@@ -211,7 +228,7 @@ export const Appbar = () => {
                   >
                     Crear
                   </Button>
-                ) : (
+                ) : !!activeCourse ? null : (
                   <Button
                     key="buscar_curso"
                     component={Link}
@@ -242,6 +259,7 @@ export const Appbar = () => {
                   </>
                 ) : null}
               </Box>
+
               <Box sx={{ flexGrow: 1, display: 'flex' }} />
               <IconButton
                 sx={{ mr: 2 }}
@@ -254,6 +272,7 @@ export const Appbar = () => {
                   <Brightness4Icon />
                 )}
               </IconButton>
+
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

@@ -125,7 +125,7 @@ function SearchCourseScreen() {
           >
             {busqueda.map((course) => (
               <Grid item xs={12} sm={6} md={4} key={course.courseId}>
-                <CourseItem {...course} />
+                <CourseItem course={course} />
               </Grid>
             ))}
           </Grid>
