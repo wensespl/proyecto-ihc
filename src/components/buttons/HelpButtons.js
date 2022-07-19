@@ -53,6 +53,30 @@ export const HelpButtons = () => {
           callback: () => {
             dispatch(openCrearModal)
           }
+        },
+        {
+          text: 'my courses',
+          callback: () => {
+            navigate('/')
+          }
+        },
+        {
+          text: 'course content',
+          callback: () => {
+            navigate('/course')
+          }
+        },
+        {
+          text: 'course comments',
+          callback: () => {
+            navigate('/comments')
+          }
+        },
+        {
+          text: 'search courses',
+          callback: () => {
+            navigate('/search')
+          }
         }
       ]
 
