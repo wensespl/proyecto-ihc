@@ -49,8 +49,10 @@ export const startUnirse = (courseId) => {
   return async (dispatch) => {
     const resp = await fetchConToken('course/user/', { courseId }, 'PUT')
     const body = await resp.json()
+    let course = body.course
+    course.joined = true
     if (body.ok) {
-      dispatch(unirse(body.course))
+      dispatch(unirse(course))
       Swal.fire('Success', 'Jined the course', 'success')
     } else {
       Swal.fire('Error', body.msg, 'error')
@@ -70,8 +72,10 @@ export const startCrearCourse = (course) => {
     course.role = role
     const resp = await fetchConToken('course/', course, 'POST')
     const body = await resp.json()
+    let newCourse = body.course
+    newCourse.joined = true
     if (body.ok) {
-      dispatch(crearCourse(body.course))
+      dispatch(crearCourse(newCourse))
       Swal.fire('Success', 'created course', 'success')
     } else {
       Swal.fire('Error', body.msg, 'error')
