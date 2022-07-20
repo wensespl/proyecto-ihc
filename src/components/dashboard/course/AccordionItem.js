@@ -20,7 +20,7 @@ export default function SimpleAccordion({ content }) {
             <Typography variant="h5">{item.name}</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <ReactPlayer url={item.link} controls={true} />
+            <ReactPlayer width={700} url={item.link} controls={true} />
           </AccordionDetails>
         </Accordion>
       ))}
