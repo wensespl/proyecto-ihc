@@ -38,7 +38,8 @@ export const CourseScreen = () => {
         >
           {activeCourse?.name ? activeCourse.name : 'Nombre del Curso'}
         </Typography>
-        <Typography variant="h5">
+
+        {/* <Typography variant="h5">
           Aprenda los fundamentos sobre Computación Gráfica y aplicaciones
         </Typography>
         <Typography>
@@ -46,7 +47,7 @@ export const CourseScreen = () => {
           por computadora, software y hardware. Los temas incluyen: trazado de
           rayos, canalización de gráficos, transformaciones, mapeo de texturas,
           sombras, muestreo, iluminación global, splines, animación y color.
-        </Typography>
+        </Typography> */}
       </Box>
 
       <Box marginTop={5} paddingTop={5} bgcolor="white">
