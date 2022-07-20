@@ -63,6 +63,19 @@ export const courseReducer = (state = initialState, action) => {
         )
       }
 
+    case types.courseUpdate:
+      return {
+        ...state,
+        courses: state.courses.map((course) => {
+          if (course.courseId !== action.payload.courseId) {
+            return course
+          } else {
+            return action.paylod
+          }
+        }),
+        activeCourse: action.payload
+      }
+
     default:
       return state
   }

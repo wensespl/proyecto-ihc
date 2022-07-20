@@ -18,7 +18,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7'
 
 import { ColorModeContext } from '../../App'
 import { startLogout } from '../../redux/actions/auth'
-import { openCrearModal } from '../../redux/actions/ui'
+import { openAddModal, openCrearModal } from '../../redux/actions/ui'
 
 const pages = ['Login', 'Register']
 const settings = ['Profile', 'Logout']
@@ -86,28 +86,38 @@ export const Appbar = () => {
                   display: { xs: 'block', md: 'none' }
                 }}
               >
-                {role === 'PROFESOR_ROLE' ? (
+                {role === 'PROFESOR_ROLE' && !!activeCourse ? (
+                  <MenuItem key="añadir" onClick={handleCloseNavMenu}>
+                    <Button
+                      onClick={() => {
+                        dispatch(openAddModal())
+                      }}
+                    >
+                      Add new content
+                    </Button>
+                  </MenuItem>
+                ) : (
                   <MenuItem key="crear" onClick={handleCloseNavMenu}>
                     <Button
                       onClick={() => {
                         dispatch(openCrearModal())
                       }}
                     >
-                      Crear
+                      Create new course
                     </Button>
                   </MenuItem>
-                ) : null}
+                )}
                 {role === 'ALUMNO_ROLE' && !!activeCourse ? (
                   <MenuItem key="ver_curso" onClick={handleCloseNavMenu}>
                     <Button component={Link} to="/course">
-                      Ver curso
+                      See course
                     </Button>
                   </MenuItem>
                 ) : null}
                 {role === 'ALUMNO_ROLE' && !!activeCourse ? (
                   <MenuItem key="comentarios" onClick={handleCloseNavMenu}>
                     <Button component={Link} to="/comments">
-                      Comentarios
+                      Comments
                     </Button>
                   </MenuItem>
                 ) : null}
@@ -120,7 +130,7 @@ export const Appbar = () => {
                         to="/search"
                         sx={{ display: 'block' }}
                       >
-                        Buscar cursos
+                        Search courses
                       </Button>
                     </MenuItem>
                   )
@@ -218,7 +228,7 @@ export const Appbar = () => {
           {!!userId ? (
             <>
               <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
-                {role === 'PROFESOR_ROLE' ? (
+                {role === 'PROFESOR_ROLE' && !!!activeCourse && (
                   <Button
                     key="crear"
                     sx={{ color: 'white', display: 'block' }}
@@ -226,18 +236,32 @@ export const Appbar = () => {
                       dispatch(openCrearModal())
                     }}
                   >
-                    Crear
+                    Create new course
                   </Button>
-                ) : !!activeCourse ? null : (
+                )}
+
+                {role === 'Alumno_Role' && !!!activeCourse && (
                   <Button
                     key="buscar_curso"
                     component={Link}
                     to="/search"
                     sx={{ color: 'white', display: 'block' }}
                   >
-                    Buscar cursos
+                    Search courses
                   </Button>
                 )}
+
+                {role === 'PROFESOR_ROLE' && !!activeCourse ? (
+                  <Button
+                    key="añadir"
+                    sx={{ color: 'white', display: 'block' }}
+                    onClick={() => {
+                      dispatch(openAddModal())
+                    }}
+                  >
+                    Add new content
+                  </Button>
+                ) : null}
                 {!!activeCourse ? (
                   <>
                     <Button
@@ -246,7 +270,7 @@ export const Appbar = () => {
                       to="/course"
                       sx={{ color: 'white', display: 'block' }}
                     >
-                      Ver curso
+                      See course
                     </Button>
                     <Button
                       key="comentarios"
@@ -254,7 +278,7 @@ export const Appbar = () => {
                       to="/comments"
                       sx={{ color: 'white', display: 'block' }}
                     >
-                      Comentarios
+                      Comments
                     </Button>
                   </>
                 ) : null}

@@ -5,6 +5,7 @@ export const types = {
   authCheckingFinish: '[Auth] Finish checking login state',
 
   courseCreate: '[Course] Creando curso',
+  courseUpdate: '[Course] Update curso',
   courseLoad: '[Course] Cargando lista de courses',
   courseGuardar: '[Course] Guardar busqueda de cursos',
   courseUnirse: '[Course] Unirse a curso',
@@ -14,5 +15,7 @@ export const types = {
   courseClear: '[Course] Clear course',
 
   uiOpenModalCrear: '[Ui] Open Crear Modal',
-  uiCloseModalCrear: '[Ui] Close Crear Modal'
+  uiCloseModalCrear: '[Ui] Close Crear Modal',
+  uiOpenModalAdd: '[Ui] Open Add Modal',
+  uiCloseModalAdd: '[Ui] Close Add Modal'
 }

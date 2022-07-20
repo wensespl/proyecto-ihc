@@ -72,7 +72,7 @@ export const startCrearCourse = (course) => {
     const body = await resp.json()
     if (body.ok) {
       dispatch(crearCourse(body.course))
-      Swal.fire('Success', 'course creado', 'success')
+      Swal.fire('Success', 'created course', 'success')
     } else {
       Swal.fire('Error', body.msg, 'error')
     }
@@ -81,6 +81,32 @@ export const startCrearCourse = (course) => {
 
 const crearCourse = (course) => ({
   type: types.courseCreate,
+  payload: course
+})
+
+export const startAddContent = (newContent) => {
+  return async (dispatch, getState) => {
+    const { activeCourse } = getState().course
+    const { contenido, ...course } = activeCourse
+    let newCourse = course
+    newCourse.contenido = [...contenido, newContent]
+    const resp = await fetchConToken(
+      `course/${activeCourse.courseId}`,
+      newCourse,
+      'PUT'
+    )
+    const body = await resp.json()
+    if (body.ok) {
+      dispatch(updateCourse(body.course))
+      Swal.fire('Success', 'added content', 'success')
+    } else {
+      Swal.fire('Error', body.msg, 'error')
+    }
+  }
+}
+
+const updateCourse = (course) => ({
+  type: types.courseUpdate,
   payload: course
 })
 

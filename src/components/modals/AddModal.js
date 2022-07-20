@@ -3,26 +3,26 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { useForm } from '../../hooks/useForm'
-import { startCrearCourse } from '../../redux/actions/course'
-import { closeCrearModal } from '../../redux/actions/ui'
+import { startAddContent, startCrearCourse } from '../../redux/actions/course'
+import { closeAddModal } from '../../redux/actions/ui'
 
-export const CrearModal = () => {
-  const { showCrear } = useSelector((state) => state.ui)
+export const AddModal = () => {
+  const { showAdd } = useSelector((state) => state.ui)
   const dispatch = useDispatch()
 
-  const closeCrear = () => {
-    dispatch(closeCrearModal())
+  const closeAdd = () => {
+    dispatch(closeAddModal())
   }
 
   const [nameValid, setNameValid] = useState(true)
-  const [temaValid, setTemaValid] = useState(true)
+  const [linkValid, setLinkValid] = useState(true)
 
   const [formValues, handleInputChange] = useForm({
     name: '',
-    tema: ''
+    link: ''
   })
 
-  const { name, tema } = formValues
+  const { name, link } = formValues
 
   const validateForm = () => {
     let valid = true
@@ -32,10 +32,10 @@ export const CrearModal = () => {
       valid = valid && false
     } else setNameValid(true)
 
-    if (tema.trim().length < 2) {
-      setTemaValid(false)
+    if (link.trim().length < 2) {
+      setLinkValid(false)
       valid = valid && false
-    } else setTemaValid(true)
+    } else setLinkValid(true)
 
     return valid
   }
@@ -45,8 +45,8 @@ export const CrearModal = () => {
     const isValid = validateForm()
 
     if (isValid) {
-      dispatch(startCrearCourse(formValues))
-      dispatch(closeCrearModal())
+      dispatch(startAddContent(formValues))
+      dispatch(closeAddModal())
     } else return
   }
 
@@ -63,7 +63,7 @@ export const CrearModal = () => {
   }
 
   return (
-    <Modal open={showCrear} onClose={closeCrear}>
+    <Modal open={showAdd} onClose={closeAdd}>
       <Box sx={style}>
         <form onSubmit={handleSubmit} noValidate autoComplete="off">
           <Grid
@@ -76,7 +76,7 @@ export const CrearModal = () => {
             spacing={2}
           >
             <Grid item>
-              <h3>Create new course</h3>
+              <h3>Add new content</h3>
             </Grid>
 
             <Grid item>
@@ -95,19 +95,19 @@ export const CrearModal = () => {
             <Grid item>
               <TextField
                 required
-                id="tema"
-                label="Tema"
-                placeholder="Enter tema"
-                name="tema"
-                value={tema}
+                id="link"
+                label="link"
+                placeholder="Enter link"
+                name="link"
+                value={link}
                 onChange={handleInputChange}
-                error={temaValid ? false : true}
+                error={linkValid ? false : true}
               />
             </Grid>
 
             <Grid item>
               <Button type="submit" variant="contained" size="large">
-                Create
+                Add
               </Button>
             </Grid>
           </Grid>

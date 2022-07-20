@@ -2,8 +2,12 @@ import React from 'react'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Accordion from '../course/AccordionItem'
+import { useSelector } from 'react-redux'
+import { AddModal } from '../../modals/AddModal'
 
 export const CourseScreen = () => {
+  const { activeCourse } = useSelector((state) => state.course)
+  console.log(activeCourse)
   return (
     <div>
       <Box
@@ -14,7 +18,7 @@ export const CourseScreen = () => {
         alignContent="center"
         margin="auto"
       >
-        <Typography
+        {/* <Typography
           sx={{ fontSize: 18, color: 'black' }}
           align="left"
           paddingLeft="3%"
@@ -22,7 +26,7 @@ export const CourseScreen = () => {
           gutterBottom
         >
           Regresar a Cursos
-        </Typography>
+        </Typography> */}
 
         <Typography
           variant="h2"
@@ -32,7 +36,7 @@ export const CourseScreen = () => {
           marginTop="30px"
           gutterBottom
         >
-          Computación Gráfica
+          {activeCourse?.name ? activeCourse.name : 'Nombre del Curso'}
         </Typography>
         <Typography variant="h5">
           Aprenda los fundamentos sobre Computación Gráfica y aplicaciones
@@ -55,20 +59,22 @@ export const CourseScreen = () => {
           margin="auto"
         >
           <Typography
-            sx={{ fontSize: 18, color: 'black' }}
+            sx={{ color: 'black' }}
+            variant="h4"
             align="left"
             paddingLeft="2%"
             marginTop={5}
             marginBottom={5}
             gutterBottom
           >
-            Contenido del Curso
+            Content:
           </Typography>
 
-          <Accordion />
+          <Accordion content={activeCourse.contenido} />
         </Box>
 
         <Box sx={{ height: 300 }}></Box>
+        <AddModal />
       </Box>
     </div>
   )
