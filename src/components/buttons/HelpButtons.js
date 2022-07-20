@@ -9,7 +9,7 @@ import { createSpeechlySpeechRecognition } from '@speechly/speech-recognition-po
 
 import { ColorModeContext } from '../../App'
 import { startLogout } from '../../redux/actions/auth'
-import { openCrearModal } from '../../redux/actions/ui'
+import { openAddModal, openCrearModal } from '../../redux/actions/ui'
 
 export const HelpButtons = () => {
   const colorMode = useContext(ColorModeContext)
@@ -57,6 +57,12 @@ export const HelpButtons = () => {
           }
         },
         {
+          text: 'add new content',
+          callback: () => {
+            dispatch(openAddModal)
+          }
+        },
+        {
           text: 'my courses',
           callback: () => {
             navigate('/')
@@ -69,7 +75,7 @@ export const HelpButtons = () => {
           }
         },
         {
-          text: 'course comments',
+          text: 'comments',
           callback: () => {
             navigate('/comments')
           }
