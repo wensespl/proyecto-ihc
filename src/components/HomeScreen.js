@@ -3,7 +3,7 @@ import React from 'react'
 
 export const HomeScreen = () => {
   return (
-    <Container>
+    <Container sx={{ marginTop: 5 }}>
       <Typography variant="h3">
         comandos permitidos son las frases que contengan lo siguiente:
       </Typography>
