@@ -7,7 +7,7 @@ import { AddModal } from '../../modals/AddModal'
 
 export const CourseScreen = () => {
   const { activeCourse } = useSelector((state) => state.course)
-  console.log(activeCourse)
+
   return (
     <div>
       <Box
