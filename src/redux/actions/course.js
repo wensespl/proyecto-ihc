@@ -100,8 +100,10 @@ export const startAddContent = (newContent) => {
       'PUT'
     )
     const body = await resp.json()
+    let courseUpdated = body.course
+    courseUpdated.joined = true
     if (body.ok) {
-      dispatch(updateCourse(body.course))
+      dispatch(updateCourse(courseUpdated))
       Swal.fire('Success', 'added content', 'success')
     } else {
       Swal.fire('Error', body.msg, 'error')
@@ -127,8 +129,10 @@ export const startAddComment = (comment) => {
       'PUT'
     )
     const body = await resp.json()
+    let courseUpdated = body.course
+    courseUpdated.joined = true
     if (body.ok) {
-      dispatch(updateCourse(body.course))
+      dispatch(updateCourse(courseUpdated))
       Swal.fire('Success', 'added comment', 'success')
     } else {
       Swal.fire('Error', body.msg, 'error')
