@@ -19,7 +19,6 @@ export const HelpButtons = () => {
   const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId)
   const speechRecognition = new SpeechlySpeechRecognition()
   speechRecognition.continuous = true
-  speechRecognition.interimResults = true
 
   const handleResult = useCallback(
     ({ results }) => {
