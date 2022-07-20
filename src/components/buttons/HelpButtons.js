@@ -23,6 +23,7 @@ export const HelpButtons = () => {
   const handleResult = useCallback(
     ({ results }) => {
       const transcript = results[0][0].transcript.toLowerCase()
+      console.log(transcript)
       const commands = [
         {
           text: 'login',

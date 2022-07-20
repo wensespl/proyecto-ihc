@@ -105,6 +105,33 @@ export const startAddContent = (newContent) => {
   }
 }
 
+export const startAddComment = (comment) => {
+  return async (dispatch, getState) => {
+    const { activeCourse } = getState().course
+    const { name } = getState().auth
+    const { comentarios, ...course } = activeCourse
+    const newComment = {
+      autor: name,
+      texto: comment.text,
+      fecha: new Date()
+    }
+    let newCourse = course
+    newCourse.comentarios = [...comentarios, newComment]
+    const resp = await fetchConToken(
+      `course/${activeCourse.courseId}`,
+      newCourse,
+      'PUT'
+    )
+    const body = await resp.json()
+    if (body.ok) {
+      dispatch(updateCourse(body.course))
+      Swal.fire('Success', 'added comment', 'success')
+    } else {
+      Swal.fire('Error', body.msg, 'error')
+    }
+  }
+}
+
 const updateCourse = (course) => ({
   type: types.courseUpdate,
   payload: course

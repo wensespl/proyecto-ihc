@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { useForm } from '../../hooks/useForm'
-import { startAddContent, startCrearCourse } from '../../redux/actions/course'
+import { startAddContent } from '../../redux/actions/course'
 import { closeAddModal } from '../../redux/actions/ui'
 
 export const AddModal = () => {

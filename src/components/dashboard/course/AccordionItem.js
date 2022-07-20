@@ -8,13 +8,6 @@ import { List, ListItem, ListItemText } from '@mui/material'
 import ReactPlayer from 'react-player'
 
 export default function SimpleAccordion({ content }) {
-  const contenido = [
-    {
-      id: 1234567,
-      name: 'Introduction',
-      link: 'https://www.youtube.com/watch?v=aefKXYYXT6I&list=PLW3u28VuDAHJNrf3JCgT0GG_rjFVz0-j9&index=1'
-    }
-  ]
   return (
     <div>
       {content.map((item) => (

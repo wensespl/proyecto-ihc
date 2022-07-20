@@ -8,6 +8,8 @@ import {
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import BookIcon from '@mui/icons-material/Book'
+
 import { setActiveCourse, startUnirse } from '../../../redux/actions/course'
 
 export const CourseItem = ({ course }) => {
@@ -22,9 +24,10 @@ export const CourseItem = ({ course }) => {
   return (
     <Card sx={{ minWidth: 200 }} variant="outlined">
       <CardContent>
-        <Typography color="textSecondary" gutterBottom>
+        {/* <Typography color="textSecondary" gutterBottom>
           Icono
-        </Typography>
+        </Typography> */}
+        <BookIcon />
         <Typography variant="h5" component="h2">
           {course?.name ? course.name : 'Nombre de curso'}
         </Typography>

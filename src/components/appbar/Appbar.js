@@ -240,7 +240,7 @@ export const Appbar = () => {
                   </Button>
                 )}
 
-                {role === 'Alumno_Role' && !!!activeCourse && (
+                {role === 'ALUMNO_ROLE' && !!!activeCourse && (
                   <Button
                     key="buscar_curso"
                     component={Link}
