@@ -24,14 +24,10 @@ export const CourseItem = ({ course }) => {
   return (
     <Card sx={{ minWidth: 200 }} variant="outlined">
       <CardContent>
-        {/* <Typography color="textSecondary" gutterBottom>
-          Icono
-        </Typography> */}
         <BookIcon />
         <Typography variant="h5" component="h2">
           {course?.name ? course.name : 'Nombre de curso'}
         </Typography>
-        {/* <Typography color="textSecondary">2/4 tareas realizadas</Typography> */}
       </CardContent>
       <CardActions>
         {course?.joined ? (

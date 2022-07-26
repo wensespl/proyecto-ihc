@@ -18,16 +18,6 @@ export const CourseScreen = () => {
         alignContent="center"
         margin="auto"
       >
-        {/* <Typography
-          sx={{ fontSize: 18, color: 'black' }}
-          align="left"
-          paddingLeft="3%"
-          marginTop={2}
-          gutterBottom
-        >
-          Regresar a Cursos
-        </Typography> */}
-
         <Typography
           variant="h2"
           fontWeight={500}

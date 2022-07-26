@@ -4,7 +4,6 @@ import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { List, ListItem, ListItemText } from '@mui/material'
 import ReactPlayer from 'react-player'
 
 export default function SimpleAccordion({ content }) {
@@ -24,85 +23,6 @@ export default function SimpleAccordion({ content }) {
           </AccordionDetails>
         </Accordion>
       ))}
-      {/* <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography variant="h5">Introducción y OpenGL</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <List>
-            <ListItem>
-              <ListItemText primary="Lección - Introducción al curso"></ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Articulo - Invitación a la Computación Gráfica"></ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Lección - Curvas Bezier y Splines"></ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Cuestionario - Curvas Bezier y Splines"></ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Lección - Coordenadas y transformaciones"></ListItemText>
-            </ListItem>
-          </List>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography variant="h5">Conceptos básicos de animación</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <List>
-            <ListItem>
-              <ListItemText primary="Lección - Introducción al curso"></ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Articulo - Invitación a la Computación Gráfica"></ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Lección - Curvas Bezier y Splines"></ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Cuestionario - Curvas Bezier y Splines"></ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Lección - Coordenadas y transformaciones"></ListItemText>
-            </ListItem>
-          </List>
-        </AccordionDetails>
-      </Accordion>
-
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography variant="h5">Conceptos básicos de Modelación</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <List>
-            <ListItem>
-              <ListItemText primary="Lección - Introducción al curso"></ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Articulo - Invitación a la Computación Gráfica"></ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Lección - Curvas Bezier y Splines"></ListItemText>
-            </ListItem>
-          </List>
-        </AccordionDetails>
-      </Accordion> */}
     </div>
   )
 }
