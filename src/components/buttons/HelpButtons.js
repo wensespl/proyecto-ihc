@@ -156,6 +156,7 @@ export const HelpButtons = () => {
           onMouseDownCapture={speechRecognition.start}
           onTouchEndCapture={speechRecognition.stop}
           onMouseUpCapture={speechRecognition.stop}
+          aria-label="microphone voice commands"
           size="large"
           color="inherit"
           sx={{ fontSize: 70 }}
@@ -166,6 +167,7 @@ export const HelpButtons = () => {
       <Grid item>
         <IconButton
           onClick={colorMode.addFontSize}
+          aria-label="increase font size"
           size="large"
           color="inherit"
           sx={{ fontSize: 70 }}
@@ -176,6 +178,7 @@ export const HelpButtons = () => {
       <Grid item>
         <IconButton
           onClick={colorMode.subFontSize}
+          aria-label="decrease font size"
           size="large"
           color="inherit"
           sx={{ fontSize: 70 }}
