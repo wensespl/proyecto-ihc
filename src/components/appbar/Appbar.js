@@ -288,6 +288,7 @@ export const Appbar = () => {
               <IconButton
                 sx={{ mr: 2 }}
                 onClick={colorMode.toggleColorMode}
+                aria-label="change color theme"
                 color="inherit"
               >
                 {theme.palette.mode === 'dark' ? (
