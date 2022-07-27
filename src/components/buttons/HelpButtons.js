@@ -41,7 +41,7 @@ export const HelpButtons = () => {
       }
     },
     {
-      indexes: ['ir a inicio', 'inicio'],
+      indexes: ['ir a inicio', 'inicio', 'Ir a inicio', 'Inicio'],
       action: (i) => {
         // artyom.say('Registrarse')
         artyom.clearGarbageCollection()
@@ -53,9 +53,9 @@ export const HelpButtons = () => {
   artyom
     .initialize({
       lang: 'es-ES',
-      continuous: true,
+      continuous: false,
       soundex: true,
-      debug: true,
+      debug: false,
       listen: true
     })
     .catch((e) => {
