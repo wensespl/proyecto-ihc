@@ -25,7 +25,12 @@ export const HelpButtons = () => {
 
   artyom.addCommands([
     {
-      indexes: ['ir a iniciar sesión', 'iniciar sesión'],
+      indexes: [
+        'ir a iniciar sesión',
+        'iniciar sesión',
+        'Ir a iniciar sesión',
+        'Iniciar sesión'
+      ],
       action: (i) => {
         // artyom.say('Iniciar sesión')
         artyom.clearGarbageCollection()
@@ -33,7 +38,12 @@ export const HelpButtons = () => {
       }
     },
     {
-      indexes: ['ir a registrarse', 'registrarse'],
+      indexes: [
+        'ir a registrarse',
+        'registrarse',
+        'Ir a registrarse',
+        'Registrarse'
+      ],
       action: (i) => {
         // artyom.say('Registrarse')
         artyom.clearGarbageCollection()
@@ -49,6 +59,14 @@ export const HelpButtons = () => {
       }
     }
   ])
+
+  artyom.redirectRecognizedTextOutput((recognized, isFinal) => {
+    if (isFinal) {
+      console.log('Texto: ' + recognized)
+    } else {
+      console.log(recognized)
+    }
+  })
 
   artyom
     .initialize({
