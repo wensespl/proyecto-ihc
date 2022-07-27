@@ -53,7 +53,7 @@ export const HelpButtons = () => {
   artyom
     .initialize({
       lang: 'es-ES',
-      continuous: false,
+      continuous: true,
       soundex: true,
       debug: true,
       listen: true
